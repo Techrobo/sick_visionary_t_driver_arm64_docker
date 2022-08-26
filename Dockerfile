@@ -10,20 +10,20 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 # source workspace
-RUN echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc 
+RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc 
 
 RUN bash -c "mkdir -p /home/catkin_ws/src"
 
 WORKDIR /home/catkin_ws/src
-RUN /bin/bash -c '. /opt/ros/indigo/setup.bash; catkin_init_workspace'
+RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_init_workspace'
 
 
 #clone the driver repo
 RUN git clone https://github.com/SICKAG/sick_visionary_t.git
 
 WORKDIR ..
-RUN /bin/bash -c '. /opt/ros/indigo/setup.bash; rosdep install --from-paths src --ignore-src -r -y'
-RUN /bin/bash -c '. /opt/ros/indigo/setup.bash; catkin_make'
+RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; rosdep install --from-paths src --ignore-src -r -y'
+RUN /bin/bash -c '. /opt/ros/kinetic/setup.bash; catkin_make'
 RUN echo "source devel/setup.bash" >> ~/.bashrc
 
 # Source your environment:
